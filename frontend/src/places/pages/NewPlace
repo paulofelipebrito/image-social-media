@@ -1,7 +1,0 @@
-const NewPlace = () => {
-  return(
-    <></>
-  );
-};
-
-export default NewPlace;
