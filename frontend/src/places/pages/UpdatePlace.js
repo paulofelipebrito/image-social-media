@@ -108,7 +108,7 @@ const UpdatePlace = () => {
         id="title"
         element="input"
         type="text"
-        label="Title"
+        label=" "
         validators={[VALIDATOR_REQUIRE()]}
         errorText="Please enter a valid title."
         onInput={inputHandler}
