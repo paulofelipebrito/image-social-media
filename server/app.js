@@ -1,16 +1,27 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import dotenv from "dotenv";
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
-import placesRoutes from './routes/places-routes';
-import usersRoutes from './routes/users-routes';
-import HttpError from './models/http-error';
+const placesRoutes = require('./routes/places-routes');
+const usersRoutes = require('./routes/users-routes');
+const HttpError = require('./models/http-error');
 
 dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+
+  next();
+});
 
 app.use('/api/places', placesRoutes); // => /api/places...
 app.use('/api/users', usersRoutes);

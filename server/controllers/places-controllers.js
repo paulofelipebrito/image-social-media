@@ -1,9 +1,8 @@
-import { validationResult } from 'express-validator';
-import mongoose from 'mongoose';
+const { validationResult } = require('express-validator');
+const mongoose = require('mongoose');
 
-import HttpError from '../models/http-error';
-import getCoordsForAddress from '../util/location';
-
+const HttpError = require('../models/http-error');
+const getCoordsForAddress = require('../util/location');
 const Place = require('../models/place');
 const User = require('../models/user');
 
