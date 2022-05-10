@@ -1,8 +1,11 @@
-const uuid = require('uuid/v4');
-const { validationResult } = require('express-validator');
+import uuid from'uuid/v4';
+import { validationResult } from 'express-validator';
 
-const HttpError = require('../models/http-error');
-const getCoordsForAddress = require('../util/location');
+import HttpError from '../models/http-error';
+import getCoordsForAddress from '../util/location';
+
+const Place = require('../models/place');
+const User = require('../models/user');
 
 let DUMMY_PLACES = [
   {

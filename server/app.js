@@ -1,10 +1,13 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import dotenv from "dotenv";
 
-const placesRoutes = require('./routes/places-routes');
-const usersRoutes = require('./routes/users-routes');
-const HttpError = require('./models/http-error');
+import placesRoutes from './routes/places-routes';
+import usersRoutes from './routes/users-routes';
+import HttpError from './models/http-error';
 
+dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
@@ -25,4 +28,14 @@ app.use((error, req, res, next) => {
   res.json({message: error.message || 'An unknown error occurred!'});
 });
 
-app.listen(5000);
+const PORT = process.env.PORT || 1000;
+
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(()=>{
+    app.listen(PORT, console.log(`Server running in http://localhost:${PORT}`));
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
