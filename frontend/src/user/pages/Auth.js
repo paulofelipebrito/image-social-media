@@ -60,7 +60,7 @@ const Auth = () => {
 
   const authSubmitHandler = async event => {
     event.preventDefault();
-
+    
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
@@ -74,6 +74,7 @@ const Auth = () => {
             'Content-Type': 'application/json'
           }
         );
+        
         auth.login(responseData.user.id);
       } catch (err) {}
     } else {
@@ -90,7 +91,7 @@ const Auth = () => {
             'Content-Type': 'application/json'
           }
         );
-
+          
         auth.login(responseData.user.id);
       } catch (err) {}
     }
