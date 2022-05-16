@@ -8,7 +8,9 @@ const mongoose = require('mongoose');
 const placesRoutes = require('./routes/places-routes');
 const usersRoutes = require('./routes/users-routes');
 const HttpError = require('./models/http-error');
+const dotenv = require('dotenv');
 
+dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
@@ -49,7 +51,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    `mongodb+srv://academind:ORlnOPLKvIH9M9hP@cluster0-ntrwp.mongodb.net/mern?retryWrites=true&w=majority`
+    process.env.MONGO_URL
   )
   .then(() => {
     app.listen(5000);
